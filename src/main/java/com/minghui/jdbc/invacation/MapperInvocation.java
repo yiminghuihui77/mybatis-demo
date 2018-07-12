@@ -2,10 +2,11 @@ package com.minghui.jdbc.invacation;
 
 import com.minghui.jdbc.annotation.MySelect;
 import com.minghui.jdbc.domain.User;
+import com.minghui.jdbc.executor.JDBCExecutor;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * JDK动态代理所需
@@ -28,9 +29,7 @@ public class MapperInvocation implements InvocationHandler {
         System.out.println("执行任务....");
         MySelect annotation = method.getAnnotation(MySelect.class);
         String sql = annotation.value();
-        System.out.println(sql);
-        User user = new User();
-        user.setName("张三");
-        return user;
+        List<User> userList = JDBCExecutor.doSelect(sql);
+        return userList;
     }
 }

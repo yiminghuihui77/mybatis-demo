@@ -3,6 +3,8 @@ package com.minghui.jdbc.mapper;
 import com.minghui.jdbc.annotation.MySelect;
 import com.minghui.jdbc.domain.User;
 
+import java.util.List;
+
 /**
  * 用户接口
  *
@@ -12,5 +14,5 @@ import com.minghui.jdbc.domain.User;
 public interface UserMapper {
 
     @MySelect("SELECT * FROM crm_user")
-    User selectUser();
+    List<User> selectUser();
 }
